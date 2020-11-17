@@ -37,10 +37,17 @@ var wares = new Vue({
   },
   methods: {
     saveWare: function () {
-      this.wareList.push({id : this.wareList.length, name:this.newWareName, description:this.newWareDescription, price :this.newWarePrice})
-      this.newWareName = ""
-      this.newWareDescription = ""
-      this.newWarePrice = ""
+      if(this.newWareName != "" && this.newWarePrice != ""){
+        this.wareList.push({id : this.wareList.length, name:this.newWareName, description:this.newWareDescription, price :this.newWarePrice})
+        this.newWareName = ""
+        this.newWareDescription = ""
+        this.newWarePrice = ""
+      }
+      else{
+        alert("Must have a name and a price");
+      }
+
+
     }
   }
 });
