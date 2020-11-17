@@ -10,6 +10,8 @@
                 <input class="col-sm" v-model="todo.name"></input>
                 <input class="col-sm" v-model="todo.description"></input>
                 <input class="col-sm" v-model="todo.price"></input>
+                <input class="col-sm" v-model="todo.storageAmount"></input>
+                <input type="checkbox" v-model="todo.storageEnabled">
                 <div class="col-sm">
                     <button class="btn btn-warning" v-on:click="deleteItem">Delete</button>
                 </div>
@@ -29,6 +31,8 @@
                 <input class="col-sm text-light bg-dark" v-model="newWareName">
                 <input class="col-sm text-light bg-dark" v-model="newWareDescription">
                 <input class="col-sm text-light bg-dark" v-model="newWarePrice">
+                <input class="col-sm text-light bg-dark" v-model="newStorageAmount"></input>
+                <input type="checkbox" v-model="storageEnabled">
                 <button class="btn-success col-sm flex" v-on:click="saveWare">Save</button>
             </div>
 
@@ -37,6 +41,7 @@
                     <div class="col-sm text-light bg-dark">Name</div>
                     <div class="col-sm text-light bg-dark">Description</div>
                     <div class="col-sm text-light bg-dark">Price</div>
+                    <div class="col-sm text-light bg-dark">Amount</div>
                     <div class="col-sm text-light bg-dark"></div>
                 </div>
 
