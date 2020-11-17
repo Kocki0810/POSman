@@ -7,11 +7,10 @@
 
         <div id="wareTemplate" style="display:none;">
             <div class="row">
-                <div class="col-sm">{{ todo.name }}</div>
-                <div class="col-sm">{{ todo.description }}</div>
-                <div class="col-sm">{{ todo.price }}</div>
+                <input class="col-sm" v-model="todo.name"></input>
+                <input class="col-sm" v-model="todo.description"></input>
+                <input class="col-sm" v-model="todo.price"></input>
                 <div class="col-sm">
-                    <button class="btn btn-primary">Edit</button>
                     <button class="btn btn-warning" v-on:click="deleteItem">Delete</button>
                 </div>
             </div>
