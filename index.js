@@ -6,6 +6,7 @@ var wares = new Vue({
     newWarePrice: "",
     storageEnabled : false,
     newStorageAmount : "",
+    title_list : [],
     wareList: []
   },
   methods: {

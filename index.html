@@ -26,32 +26,42 @@
             </div>
         </div>
 
-        <div class="container" id="wares">
-            <div class="row">
-                <input class="col-sm text-light bg-dark" v-model="newWareName">
-                <input class="col-sm text-light bg-dark" v-model="newWareDescription">
-                <input class="col-sm text-light bg-dark" v-model="newWarePrice">
-                <input class="col-sm text-light bg-dark" v-model="newStorageAmount"></input>
-                <input type="checkbox" v-model="storageEnabled">
-                <button class="btn-success col-sm flex" v-on:click="saveWare">Save</button>
-            </div>
-
-            <ol class="list-group">
+        <div id="titleTemplate" style="display:none">
+            <div>
                 <div class="row">
                     <div class="col-sm text-light bg-dark">Name</div>
                     <div class="col-sm text-light bg-dark">Description</div>
                     <div class="col-sm text-light bg-dark">Price</div>
                     <div class="col-sm text-light bg-dark">Amount</div>
                     <div class="col-sm text-light bg-dark"></div>
+                    <ol class="list-group">
+                        <ware-list v-bind:list="wareList">
+                            
+                        </ware-list>
+                    </ol>
+                    
+                <div class="row">
+                    <input class="col-sm text-light bg-dark" v-model="newWareName">
+                    <input class="col-sm text-light bg-dark" v-model="newWareDescription">
+                    <input class="col-sm text-light bg-dark" v-model="newWarePrice">
+                    <input class="col-sm text-light bg-dark" v-model="newStorageAmount"></input>
+                    <input type="checkbox" v-model="storageEnabled">
+                    <button class="btn-success col-sm flex" v-on:click="saveWare">Save</button>
                 </div>
+                
+                
+                </div>
+            </div>
+        </div>
+       
+        <div class="container" id="wares">       
+            <addproductheader v-bind:title="title_list">
 
-                <ware-list v-bind:list="wareList">
-
-                </ware-list>
-            </ol>
+            </addproductheader>
           </div>
             
         <script src="index.js"></script>
+        <script src="components/add-product-header.js"></script>
         <script src="components/ware.js"></script>
         <script src="components/ware-list.js"></script>
     </body>
