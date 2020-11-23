@@ -11,7 +11,15 @@ const router = new VueRouter({
 var wares = new Vue({
   el: '#wares',
   data: {
-    ware: {newWareName: "", newWareDescription : "", newWarePrice : "", storageEnabled : false, newStorageAmount : "", wareList : []}
+    ware: {
+    newWareName: "", 
+    newWareDescription : "", 
+    newWarePrice : "", 
+    storageEnabled : false, 
+    newStorageAmount : "", 
+    wareList : [],
+    waresSold : []
+    }
   },
   methods: {
  

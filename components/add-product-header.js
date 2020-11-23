@@ -14,6 +14,9 @@ Vue.component("addproductheader", {
             else{
                 alert("Must have a name and a price");
             }
+        },
+        ToggleMode: function(){
+                
         }
     }
   });

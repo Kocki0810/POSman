@@ -20,6 +20,30 @@
             </div>
         </div>
 
+        <div id="soldTemplate" style="display:none">
+            <div class="row">
+                <div class="col-sm">{{sold.name}}</div>
+                <div class="col-sm">{{sold.price}}</div>
+                <div class="col-sm">{{sold.soldAmount}}</div>
+        </div>
+
+        </div>
+
+        <div id="waresSoldTemplate" style="display:none;">
+            <div>
+                <div class="row">
+                    <div class="col-sm text-light bg-dark">Name</div>
+                    <div class="col-sm text-light bg-dark">Price</div>
+                    <div class="col-sm text-light bg-dark">Sold Amount</div>
+                    <div class="col-sm text-light bg-dark">Time</div>
+
+                    <sold v-for="item in sold" v-bind:sold="item" v-on:delete-row="deleteList" v-bind:key="item.id">
+
+                    </sold>
+            </div>
+            </div>
+        </div>
+
         <div id="warelistTemplate" style="display:none;">
             <div>
                 <ware v-for="item in list" v-bind:todo="item" v-on:delete-row="deleteList" v-bind:key="item.id">
@@ -27,7 +51,6 @@
                 </ware>
             </div>
         </div>
-
         <div id="titleTemplate" style="display:none">
             <div>
                 <div class="row">
@@ -35,7 +58,7 @@
                     <div class="col-sm text-light bg-dark">Description</div>
                     <div class="col-sm text-light bg-dark">Price</div>
                     <div class="col-sm text-light bg-dark">Amount</div>
-                    <div class="col-sm text-light bg-dark"></div>
+                    <button class="btn-warning col-sm" v-on:click="ToggleMode">Cashier</button>
                 </div>
                 <div class="row">
                     <input class="col-sm text-light bg-dark" v-model="data.newWareName">
@@ -43,7 +66,7 @@
                     <input class="col-sm text-light bg-dark" v-model="data.newWarePrice">
                     <input class="col-sm text-light bg-dark" v-model="data.newStorageAmount"></input>
                     <input type="checkbox" v-model="data.storageEnabled">
-                    <button class="btn-success col-sm flex" v-on:click="saveWare">Save</button>
+                    <button class="btn-success col-sm col-sm" v-on:click="saveWare">Save</button>
                 </div>
                 <ol class="list-group">
                     <ware-list v-bind:list="data.wareList">
@@ -64,6 +87,8 @@
         <script src="components/add-product-header.js"></script>
         <script src="components/ware.js"></script>
         <script src="components/ware-list.js"></script>
+        <script src="components/sold-list.js"></script>
+        <script src="components/sold.js"></script>
         <script src="index.js"></script>
     </body>
 </html>
