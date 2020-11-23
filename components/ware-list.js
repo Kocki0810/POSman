@@ -10,4 +10,4 @@ Vue.component('ware-list', {
           wares.wareList[i].id = i;
         }
       }
-  }});
+}});
