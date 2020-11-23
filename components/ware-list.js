@@ -4,10 +4,10 @@ Vue.component('ware-list', {
     methods : {
       deleteList(id)
       {   
-        wares.wareList.splice(id.id, 1);
-        for(var i= 0; i < wares.wareList.length; i++)
+        this.list.splice(id.id, 1);
+        for(var i= 0; i < this.list.length; i++)
         {
-          wares.wareList[i].id = i;
+          this.list[i].id = i;
         }
       }
 }});
