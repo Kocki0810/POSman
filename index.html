@@ -58,7 +58,7 @@
                     <div class="col-sm text-light bg-dark">Description</div>
                     <div class="col-sm text-light bg-dark">Price</div>
                     <div class="col-sm text-light bg-dark">Amount</div>
-                    <button class="btn-warning col-sm" v-on:click="ToggleMode">Cashier</button>
+                    <router-link class="btn-warning col-sm" to="/foo" tag="button">Mode</router-link>
                 </div>
                 <div class="row">
                     <input class="col-sm text-light bg-dark" v-model="data.newWareName">
@@ -76,10 +76,6 @@
             </div>
         </div>
         <div class="container" id="wares">       
-            <p>
-                <!--<p>---------- routing ----------</p>-->
-                <router-link to="/foo">Go to Foo</router-link>
-            </p>
             <addproductheader v-bind:data="ware">
 
             </addproductheader>
