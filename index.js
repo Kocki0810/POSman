@@ -1,3 +1,13 @@
+const Foo = { template: '<div>foo</div>' }
+
+const routes = [
+    { path: '/foo', component: Foo }
+]
+
+const router = new VueRouter({
+    routes
+})
+
 var wares = new Vue({
   el: '#wares',
   data: {
@@ -5,6 +15,7 @@ var wares = new Vue({
   },
   methods: {
  
-  }
-});
+    },
+  router
+}).$mount('#wares');
 
