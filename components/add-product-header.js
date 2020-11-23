@@ -3,13 +3,13 @@ Vue.component("addproductheader", {
     template: document.getElementById("titleTemplate"),
     methods: {
         saveWare: function () {
-            if(list.newWareName != "" && list.newWarePrice != ""){
-                list.ware["wareList"].push({id : list.wareList.length, name : list.newWareName, description : list.newWareDescription, price : list.newWarePrice, storageEnabled : list.storageEnabled, storageAmount : list.newStorageAmount})
-                list.ware["newWareName"] = ""
-                list.ware["newWareDescription"] = ""
-                list.ware["newWarePrice"] = ""
-                list.ware["newStorageAmount"] = ""
-                list.ware["storageEnabled"] = false
+            if(this.data.newWareName != "" && this.data.newWarePrice != ""){
+                this.data.wareList.push({id : this.data.wareList.length, name : this.data.newWareName, description : this.data.newWareDescription, price : this.data.newWarePrice, storageEnabled : this.data.storageEnabled, storageAmount : this.data.newStorageAmount})
+                this.data.newWareName = ""
+                this.data.newWareDescription = ""
+                this.data.newWarePrice = ""
+                this.data.newStorageAmount = ""
+                this.data.storageEnabled = false
             }
             else{
                 alert("Must have a name and a price");

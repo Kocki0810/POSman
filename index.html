@@ -35,20 +35,20 @@
                     <div class="col-sm text-light bg-dark">Price</div>
                     <div class="col-sm text-light bg-dark">Amount</div>
                     <div class="col-sm text-light bg-dark"></div>
+                    <div class="row">
+                        <input class="col-sm text-light bg-dark" v-model="data.newWareName">
+                        <input class="col-sm text-light bg-dark" v-model="data.newWareDescription">
+                        <input class="col-sm text-light bg-dark" v-model="data.newWarePrice">
+                        <input class="col-sm text-light bg-dark" v-model="data.newStorageAmount"></input>
+                        <input type="checkbox" v-model="data.storageEnabled">
+                        <button class="btn-success col-sm flex" v-on:click="saveWare">Save</button>
+                    </div>
                     <ol class="list-group">
                         <ware-list v-bind:list="data.wareList">
                             
                         </ware-list>
                     </ol>
                     
-                <div class="row">
-                    <input class="col-sm text-light bg-dark" v-model="data.newWareName">
-                    <input class="col-sm text-light bg-dark" v-model="data.newWareDescription">
-                    <input class="col-sm text-light bg-dark" v-model="data.newWarePrice">
-                    <input class="col-sm text-light bg-dark" v-model="data.newStorageAmount"></input>
-                    <input type="checkbox" v-model="data.storageEnabled">
-                    <button class="btn-success col-sm flex" v-on:click="saveWare">Save</button>
-                </div>
                 
                 
                 </div>
