@@ -1,3 +1,5 @@
+// Routing for home-page
+
 const Foo = { template: '<div>foo</div>' }
 
 const routes = [
