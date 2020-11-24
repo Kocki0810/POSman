@@ -1,31 +1,73 @@
-// Routing for home-page
+const manager = { 
+  template: '<manager v-bind:data="data"></manager>',
+  prop: ["data"],
+  methods: {
+    save : function()
+    {
+      localStorage.items = JSON.stringify(this.wareList);
+    },
+    load : function()
+    {
+      var json_string = localStorage["items"];
+      if(json_string == undefined)
+      {
+        this.wareList = [];
+      }
+      else
+      {
+        this.wareList = JSON.parse(json_string);
+      }
+    }
+  },
+  data(){
+    return {
+      data : { 
+        ware : {
+          newWareName: "", 
+          newWareDescription : "", 
+          newWarePrice : "", 
+          storageEnabled : false, 
+          newStorageAmount : "", 
+        },
+        wareList : []
+      },
+    };
+  },
+  mounted(){
+    this.load();
+  }
+}
+const cashier = { 
+template: '<div>bar</div>', 
 
-const Foo = { template: '<div>foo</div>' }
+methods : {
+  mounted(){
+    this.load();
+  }
+ }
+}
 
-const routes = [
-    { path: '/foo', component: Foo }
-]
+const routes = {
 
-const router = new VueRouter({
-    routes
-})
+  '#/' : manager ,
+  '#/cashier': cashier 
+}
 
 var wares = new Vue({
   el: '#wares',
   data: {
-    ware: {
-    newWareName: "", 
-    newWareDescription : "", 
-    newWarePrice : "", 
-    storageEnabled : false, 
-    newStorageAmount : "", 
-    wareList : [],
-    waresSold : []
+  currentRoute : window.location.hash
+},
+  render(h) { console.log(this.currentRoute); return h(this.ViewComponent) },
+  computed : {
+    ViewComponent() {
+      return routes[this.currentRoute] || cashier;
     }
-  },
-  methods: {
- 
-    },
-  router
-}).$mount('#wares');
+  }
+});
 
+
+window.onhashchange = function(){
+  wares.currentRoute = window.location.hash;
+  console.log(window.location.hash)
+}
