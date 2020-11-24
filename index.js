@@ -1,25 +1,14 @@
-<<<<<<< Updated upstream
-// Routing for home-page
-
-const Foo = { template: '<div>foo</div>' }
-
-const routes = [
-    { path: '/foo', component: Foo }
-]
-
-const router = new VueRouter({
-    routes
-=======
 const manager = { 
-  template: '<addproductheader v-bind:data="ware"></addproductheader>',
+  template: '<manager v-bind:data="data"></manager>',
+  prop: ["data"],
   methods: {
     save : function()
     {
-      document.localStorage.items = JSON.stringify(this.wareList);
+      localStorage.items = JSON.stringify(this.wareList);
     },
     load : function()
     {
-      var json_string = document.localStorage["items"];
+      var json_string = localStorage["items"];
       if(json_string == undefined)
       {
         this.wareList = [];
@@ -31,7 +20,18 @@ const manager = {
     }
   },
   data(){
-    return {wareList : []};
+    return {
+      data : { 
+        ware : {
+          newWareName: "", 
+          newWareDescription : "", 
+          newWarePrice : "", 
+          storageEnabled : false, 
+          newStorageAmount : "", 
+        },
+        wareList : []
+      },
+    };
   },
   mounted(){
     this.load();
@@ -47,38 +47,27 @@ methods : {
  }
 }
 
-const routes = [
-    { path: '/#', component: manager },
-    { path: '/#cashier', component: cashier }
-];
+const routes = {
 
-const router = new VueRouter({
-routes 
->>>>>>> Stashed changes
-})
+  '#/' : manager ,
+  '#/cashier': cashier 
+}
 
 var wares = new Vue({
-  router,
   el: '#wares',
   data: {
-    ware: {
-    newWareName: "", 
-    newWareDescription : "", 
-    newWarePrice : "", 
-    storageEnabled : false, 
-    newStorageAmount : "", 
-    wareList : [],
-    waresSold : []
+  currentRoute : window.location.hash
+},
+  render(h) { console.log(this.currentRoute); return h(this.ViewComponent) },
+  computed : {
+    ViewComponent() {
+      return routes[this.currentRoute] || cashier;
     }
-<<<<<<< Updated upstream
-  },
-  methods: {
- 
-    },
-  router
-}).$mount('#wares');
-=======
   }
 });
->>>>>>> Stashed changes
 
+
+window.onhashchange = function(){
+  wares.currentRoute = window.location.hash;
+  console.log(window.location.hash)
+}
