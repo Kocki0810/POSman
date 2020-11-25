@@ -1,4 +1,4 @@
 Vue.component('sold', {
-    props: ['sold'],
+    props: ['solditem'],
     template: document.getElementById("soldTemplate")
 });

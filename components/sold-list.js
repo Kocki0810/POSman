@@ -1,4 +1,4 @@
-Vue.component('sold-list', {
-    props: ['sold'],
+Vue.component('soldlist', {
+    props: ['soldlist'],
     template: document.getElementById("waresSoldTemplate")
 });

@@ -1,27 +1,28 @@
 const manager = { 
-  template: '<manager v-bind:data="data"></manager>',
+  template: '<manager v-bind:data="datalist"></manager>',
   prop: ["data"],
   methods: {
     save : function()
     {
-      localStorage.items = JSON.stringify(this.wareList);
+      localStorage.items = JSON.stringify(this.datalist);
+      
     },
     load : function()
     {
       var json_string = localStorage["items"];
       if(json_string == undefined)
       {
-        this.wareList = [];
+        // this.datalist.ware = [];
       }
       else
       {
-        this.wareList = JSON.parse(json_string);
+        this.datalist = JSON.parse(json_string);
       }
     }
   },
   data(){
     return {
-      data : { 
+      datalist : { 
         ware : {
           newWareName: "", 
           newWareDescription : "", 
@@ -29,7 +30,8 @@ const manager = {
           storageEnabled : false, 
           newStorageAmount : "", 
         },
-        wareList : []
+        wareList : [],
+        soldList : []
       },
     };
   },
@@ -37,19 +39,41 @@ const manager = {
     this.load();
   }
 }
-const cashier = { 
-template: '<div>bar</div>', 
-
-methods : {
+const cashier = {
+  template: '<cashier v-bind:cashierdata="datalist"></cashier>',
+  prop : ["data"],
+  methods: {
+    save : function()
+    {
+      localStorage.items = JSON.stringify(this.datalist);
+    },
+    load : function()
+    {
+      var json_string = localStorage["items"];
+      if(json_string == undefined)
+      {
+        this.datalist = [];
+      }
+      else
+      {
+        this.datalist = JSON.parse(json_string);
+      }
+    }
+  },
+  data(){
+    return {
+      datalist : { 
+        wareList : [],
+        cart : []
+      }
+    };
+  },
   mounted(){
     this.load();
   }
- }
 }
-
 const routes = {
 
-  '' : manager ,
   '#/' : manager ,
   '#/cashier': cashier 
 }
@@ -62,7 +86,7 @@ var wares = new Vue({
   render(h) { console.log(this.currentRoute); return h(this.ViewComponent) },
   computed : {
     ViewComponent() {
-      return routes[this.currentRoute] || cashier;
+      return routes[this.currentRoute] || manager;
     }
   }
 });
