@@ -49,6 +49,7 @@ methods : {
 
 const routes = {
 
+  '' : manager ,
   '#/' : manager ,
   '#/cashier': cashier 
 }
