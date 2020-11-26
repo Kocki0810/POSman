@@ -150,8 +150,9 @@
     </div>
     <div id="cartTemplate" style="display:none">
         <div class="d-flex flex-column">
-            <div class="p-2" v-for="item in cartitems">Item Name {{item.name}}</div>
-            <div class="p-2" v-for="item in cartitems">Item Price {{item.price}}</div>
+            <div v-for="item in cartitems">Item Name: {{item.name}}</div>
+            <div v-for="item in cartitems">Item Price: {{item.price}}</div>
+            <div style="background-color:yellowgreen">Total Price: {{total}}</div>
         </div>
     </div>
     <div id="cashierTemplate" style="display:none">
@@ -168,7 +169,9 @@
                         </div>
                     </div>
                     <div class="col-sm-3" style="background-color:yellow;">
+
                         <cart v-bind:cartitems="data.cart"></cart>
+
                         <!--<div class="row border">
                             <div class="col-sm-3 text-light">
                                 <a href="/POS/POSman/#"><input type="button" class="btn btn-danger" value="Mode"></input></a>
