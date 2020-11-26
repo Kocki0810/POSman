@@ -3,7 +3,7 @@ Vue.component('cashier', {
     template: document.getElementById("cashierTemplate"),
     methods : {
         buyitems : function() {
-            this.$emit("buyitems", this.data.cart)
+            //this.$emit("buyitems", this.data.cart)
             console.log(this.data.cart)
         },
         addtocart : function(item) {
