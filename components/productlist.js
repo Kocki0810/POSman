@@ -5,7 +5,6 @@ Vue.component('productlist', {
         clickadd : function(item)
         {
             this.$emit('addtocart', item)
-            console.log(item)
         }
     }
 });

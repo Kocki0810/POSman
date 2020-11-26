@@ -23,7 +23,7 @@
                         <p class="card-text">Stock</p>
                         <div class="input-group mb-3">
                             <input type="text" placeholder="Stock" class="form-control" v-model="todo.storageAmount"
-                                   aria-label="Text input with checkbox">
+                                aria-label="Text input with checkbox">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <input type="checkbox" v-model="todo.storageEnabled">
@@ -66,17 +66,16 @@
         <div class="d-flex justify-content-between align-items-stretch">
             <div class="container-fluid mb-4">
                 <div class="row justify-content-left row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-
                     <ware v-for="item in list" v-bind:todo="item" v-on:delete-row="deleteList" v-bind:key="item.id">
-
+                        
                     </ware>
-
+                    
                 </div>
             </div>
-
+            
         </div>
     </div>
-
+    
     <div id="titleTemplate" style="display:none">
         <div class="container-fluid">
             <div class="row">
@@ -92,11 +91,12 @@
                         <input class="col-sm text-light bg-dark" v-model="data.ware.newWarePrice">
                         <input class="col-sm text-light bg-dark" v-model="data.ware.newStorageAmount"></input>
                         <input type="checkbox" v-model="data.ware.storageEnabled">
-                        <button class="btn-success col-sm col-sm" v-on:click="saveWare">Save</button>
+                        <button class="btn-success col-sm col-sm" v-on:click="saveWare">Create</button>
                     </div>
 
                     <ware-list v-bind:list="data.wareList"></ware-list>
 
+                    <button class="btn btn-success" v-on:click="save">Save</button>
 
                 </div>
                 <div class="col-sm-3" style="background-color:yellow;">
@@ -116,7 +116,7 @@
                         <div class="col-sm text-light bg-dark">Timestamp</div>
                     </div>
 
-                    <div class="row border" v-for="item in data.cart">
+                    <div class="row border" v-for="item in data.cart" >
                         <div class="col-sm text-light bg-dark">item.name</div>
                         <div class="col-sm text-light bg-dark">item.price</div>
                         <div class="col-sm text-light bg-dark">item.timestamp</div>
@@ -128,7 +128,7 @@
         </div>
     </div>
     <div id="productTemplate" style="display:none">
-
+        
     </div>
     <div id="productlistTemplate" style="display:none">
         <div>
@@ -139,19 +139,13 @@
                             <div class="card-body" v-on:click="clickadd(item)">
                                 <h4 class="card-title">{{item.name}}</h4>
                                 <p class="card-text">{{item.price}}</p>
-                                <p v-if="item.storageEnabled" class="card-text"><small class="text-muted">{{item.storageAmount}}</small></p>
-                                <button class="btn btn-primary stretched-link">Add</button>
+                                <p v-if="item.storageEnabled"class="card-text"><small class="text-muted">{{item.storageAmount}}</small></p>
+                                <button  class="btn btn-primary stretched-link">Add</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div id="cartTemplate" style="display:none">
-        <div class="d-flex flex-column">
-            <div class="p-2" v-for="item in cartitems">Item Name {{item.name}}</div>
-            <div class="p-2" v-for="item in cartitems">Item Price {{item.price}}</div>
         </div>
     </div>
     <div id="cashierTemplate" style="display:none">
@@ -168,19 +162,22 @@
                         </div>
                     </div>
                     <div class="col-sm-3" style="background-color:yellow;">
-                        <cart v-bind:cartitems="data.cart"></cart>
-                        <!--<div class="row border">
+                        <div class="row border">
                             <div class="col-sm-3 text-light">
                                 <a href="/POS/POSman/#"><input type="button" class="btn btn-danger" value="Mode"></input></a>
                             </div>
                             <input type="button" v-on:click="buyitems" class="btn btn-success" value="Buy"></input>
+                        </div>
+                        <div class="row">
+                            <p class="col-sm-6">Name</p>
+                            <p class="col-sm-1">Price</p>
                         </div>
                         <div v-for="item in data.cart" class="row border">
                             <div class="col-sm text-light bg-dark">{{item.name}}</div>
                             <div class="col-sm text-light bg-dark">{{item.price}}</div>
                         </div>
                         <div>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -189,7 +186,6 @@
     <div class="container" id="wares">
     </div>
 
-    <script src="components/cart.js"></script>
     <script src="components/manager.js"></script>
     <script src="components/ware.js"></script>
     <script src="components/ware-list.js"></script>

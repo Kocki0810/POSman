@@ -11,11 +11,11 @@ const manager = {
       var json_string = localStorage["items"];
       if(json_string == undefined)
       {
-        this.wareList = [];
+        this.data.wareList = [];
       }
       else
       {
-        this.wareList = JSON.parse(json_string);
+        this.data.wareList = JSON.parse(json_string);
       }
     }
   },
@@ -43,7 +43,6 @@ const cashier = {
   methods: {
     save : function(cart)
     {
-      console.log(cart)
     },
     load : function()
     {
@@ -85,7 +84,7 @@ var wares = new Vue({
   data: {
   currentRoute : window.location.hash
 },
-  render(h) { console.log(this.currentRoute); return h(this.ViewComponent) },
+  render(h) { return h(this.ViewComponent) },
   computed : {
     ViewComponent() {
       return routes[this.currentRoute] || cashier;
@@ -96,5 +95,4 @@ var wares = new Vue({
 
 window.onhashchange = function(){
   wares.currentRoute = window.location.hash;
-  console.log(window.location.hash)
 }

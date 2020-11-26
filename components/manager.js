@@ -16,6 +16,9 @@ Vue.component("manager", {
             else{
                 alert("Must have a name and a price");
             }
+        },
+        save : function(){
+            this.$emit("saveware",this.data.wareList)
         }
     }
   });
