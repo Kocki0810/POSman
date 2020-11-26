@@ -17,9 +17,6 @@
                         <p class="card-text">Name</p>
                         <input class="form-control" placeholder="Name" v-model="todo.name"></input>
 
-                        <p class="card-text">Description</p>
-                        <input class="form-control" placeholder="Description" v-model="todo.description"></input>
-
                         <p class="card-text">Price</p>
                         <input class="form-control" placeholder="Price" v-model="todo.price"></input>
 
@@ -82,20 +79,17 @@
     </div>
     
     <div id="titleTemplate" style="display:none">
-
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-9" style="background-color:gray;">
                     <div class="row">
                         <div class="col-sm text-light bg-dark">Name</div>
-                        <div class="col-sm text-light bg-dark">Description</div>
                         <div class="col-sm text-light bg-dark">Price</div>
                         <div class="col-sm text-light bg-dark">Amount</div>
                         <div class="col-sm text-light bg-dark"></div>
                     </div>
                     <div class="row">
                         <input class="col-sm text-light bg-dark" v-model="data.ware.newWareName">
-                        <input class="col-sm text-light bg-dark" v-model="data.ware.newWareDescription">
                         <input class="col-sm text-light bg-dark" v-model="data.ware.newWarePrice">
                         <input class="col-sm text-light bg-dark" v-model="data.ware.newStorageAmount"></input>
                         <input type="checkbox" v-model="data.ware.storageEnabled">
@@ -110,7 +104,7 @@
 
                     <div class="row border">
                         <div class="col-sm text-light bg-dark">
-                            <input type="button" class="btn btn-danger" value="Mode"></input>
+                            <a href="/POS/POSman/#/cashier"><input type="button" class="btn btn-danger" value="Mode"></input></a>
                         </div>
                     </div>
 
@@ -122,15 +116,69 @@
                         <div class="col-sm text-light bg-dark">Price</div>
                         <div class="col-sm text-light bg-dark">Timestamp</div>
                     </div>
+
+                    <div class="row border" v-for="item in data.cart" >
+                        <div class="col-sm text-light bg-dark">item.name</div>
+                        <div class="col-sm text-light bg-dark">item.price</div>
+                        <div class="col-sm text-light bg-dark">item.timestamp</div>
+                    </div>
+
                     <!-- template end -->
-
-
                 </div>
             </div>
         </div>
-
-
-
+    </div>
+    <div id="productTemplate" style="display:none">
+        
+    </div>
+    <div id="productlistTemplate" style="display:none">
+        <div>
+            <div v-for="item in productlist" v-bind:product="productlist" v-bind:key="item.id">
+                <div>
+                    <div class="col mt-4">
+                        <div class="card">
+                            <div class="card-body" v-on:click="clickadd(item)">
+                                <h4 class="card-title">{{item.name}}</h4>
+                                <p class="card-text">{{item.price}}</p>
+                                <p v-if="item.storageEnabled"class="card-text"><small class="text-muted">{{item.storageAmount}}</small></p>
+                                <button  class="btn btn-primary stretched-link">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cashierTemplate" style="display:none">
+        <div>
+            <div>
+                <div class="row">
+                    <div class="col-sm-9" style="background-color:gray;">
+                        <div class="d-flex justify-content-between align-items-stretch">
+                            <div class="container-fluid mb-4">
+                                <div class="row justify-content-center row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+                                    <productlist v-on:addtocart="addtocart" v-bind:productlist="data.products"></productlist>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" style="background-color:yellow;">
+                        <div class="row border">
+                            <div class="col-sm-3 text-light">
+                                <a href="/POS/POSman/#"><input type="button" class="btn btn-danger" value="Mode"></input></a>
+                            </div>
+                            <input type="button" v-on:click="buyitems" class="btn btn-success" value="Buy"></input>
+                        </div>
+                        <div v-for="item in data.cart" class="row border">
+                            <div class="col-sm text-light bg-dark">{{item.name}}</div>
+                            <div class="col-sm text-light bg-dark">{{item.price}}</div>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container" id="wares">
     </div>
@@ -140,6 +188,9 @@
     <script src="components/ware-list.js"></script>
     <script src="components/sold-list.js"></script>
     <script src="components/sold.js"></script>
+    <script src="components/cashier.js"></script>
+    <script src="components/productlist.js"></script>
+    <script src="components/product.js"></script>
     <script src="index.js"></script>
 </body>
 

@@ -6,6 +6,7 @@ Vue.component("manager", {
             
             if(this.data.newWareName != "" && this.data.newWarePrice != ""){
                 this.data.wareList.push({id : this.data.wareList.length, name : this.data.ware.newWareName, description : this.data.ware.newWareDescription, price : this.data.ware.newWarePrice, storageEnabled : this.data.ware.storageEnabled, storageAmount : this.data.ware.newStorageAmount})
+                this.$emit("saveware",this.data.wareList)
                 this.data.ware.newWareName = ""
                 this.data.ware.newWareDescription = ""
                 this.data.ware.newWarePrice = ""

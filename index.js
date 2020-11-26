@@ -1,10 +1,10 @@
 const manager = { 
-  template: '<manager v-bind:data="data"></manager>',
+  template: '<manager v-on:saveware="save" v-bind:data="data"></manager>',
   prop: ["data"],
   methods: {
-    save : function()
+    save : function(warelist)
     {
-      localStorage.items = JSON.stringify(this.wareList);
+      localStorage.items = JSON.stringify(warelist);
     },
     load : function()
     {
@@ -24,12 +24,12 @@ const manager = {
       data : { 
         ware : {
           newWareName: "", 
-          newWareDescription : "", 
           newWarePrice : "", 
           storageEnabled : false, 
           newStorageAmount : "", 
         },
-        wareList : []
+        wareList : [],
+        cart : [],
       },
     };
   },
@@ -38,13 +38,39 @@ const manager = {
   }
 }
 const cashier = { 
-template: '<div>bar</div>', 
-
-methods : {
+  template: '<cashier v-bind:data="data"></cashier>', 
+  prop: ["data"],
+  methods: {
+    save : function(cart)
+    {
+      console.log(cart)
+    },
+    load : function()
+    {
+      var json_string = localStorage.items;
+      if(json_string == undefined)
+      {
+        this.data.products = [];
+      }
+      else
+      {
+        this.data.products = JSON.parse(json_string);
+      }
+    },
+  
+  },
+  data(){
+    return {
+      data: {
+      cart : [],
+      products : [],
+      sold : []
+      }
+    };
+  },
   mounted(){
     this.load();
-  }
- }
+    }
 }
 
 const routes = {
