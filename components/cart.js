@@ -1,6 +1,6 @@
 Vue.component('cart', {
     name: "cart",
-    props: ['cartitems'],
+    props: ['cartitems', "data"],
     template: document.getElementById("cartTemplate"),
     computed: {
         total: function () {
@@ -16,5 +16,4 @@ Vue.component('cart', {
             this.$emit('addtocart', item)
             console.log(item)
         }
-    }
 });

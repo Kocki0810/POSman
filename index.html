@@ -148,7 +148,7 @@
             </div>
         </div>
     </div>
-    <div id="cartTemplate" style="display:none">
+    <!--<div id="cartTemplate" style="display:none">
         <div class="d-flex flex-column">
             <table class="table table-cart">
                 <tr v-for="item in cartitems">
@@ -158,7 +158,7 @@
             </table>
             <div>Total Price: {{total}}</div>
         </div>
-    </div>
+    </div>-->
     <div id="cashierTemplate" style="display:none">
         <div>
             <div>
@@ -180,11 +180,10 @@
                             </div>
                         </div>
 
-                        <cart v-bind:cartitems="data.cart"></cart>
+                        <!--<cart v-bind:cartitems="data.cart"></cart>-->
 
-                        <!--<div class="row border">
+                        <div class="row border">
                             <div class="col-sm-3 text-light">
-                                <a href="/POS/POSman/#"><input type="button" class="btn btn-danger" value="Mode"></input></a>
                             </div>
                             <input type="button" v-on:click="buyitems" class="btn btn-success" value="Buy"></input>
                         </div>
@@ -195,7 +194,8 @@
                         <div v-for="item in data.cart" class="row border">
                             <div class="col-sm text-light bg-dark">{{item.name}}</div>
                             <div class="col-sm text-light bg-dark">{{item.price}}</div>
-                        </div>-->
+                        </div>
+                        <div>Total Price: {{total}}</div>
                     </div>
                 </div>
             </div>
@@ -204,7 +204,7 @@
     <div class="container" id="wares">
     </div>
 
-    <script src="components/cart.js"></script>
+    <!--<script src="components/cart.js"></script>-->
     <script src="components/manager.js"></script>
     <script src="components/ware.js"></script>
     <script src="components/ware-list.js"></script>
