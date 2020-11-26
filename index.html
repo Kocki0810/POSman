@@ -150,9 +150,13 @@
     </div>
     <div id="cartTemplate" style="display:none">
         <div class="d-flex flex-column">
-            <div v-for="item in cartitems">Item Name: {{item.name}}</div>
-            <div v-for="item in cartitems">Item Price: {{item.price}}</div>
-            <div style="background-color:yellowgreen">Total Price: {{total}}</div>
+            <table class="table table-cart">
+                <tr v-for="item in cartitems">
+                    <td>Item: {{item.name}}</td>
+                    <td>Price: {{item.price}}</td>
+                </tr>
+            </table>
+            <div>Total Price: {{total}}</div>
         </div>
     </div>
     <div id="cashierTemplate" style="display:none">
