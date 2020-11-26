@@ -1,37 +1,35 @@
 const manager = { 
-  template: '<manager v-bind:data="datalist"></manager>',
+  template: '<manager v-on:saveware="save" v-bind:data="data"></manager>',
   prop: ["data"],
   methods: {
-    save : function()
+    save : function(warelist)
     {
-      localStorage.items = JSON.stringify(this.datalist);
-      
+      localStorage.items = JSON.stringify(warelist);
     },
     load : function()
     {
       var json_string = localStorage["items"];
       if(json_string == undefined)
       {
-        // this.datalist.ware = [];
+        this.data.wareList = [];
       }
       else
       {
-        this.datalist = JSON.parse(json_string);
+        this.data.wareList = JSON.parse(json_string);
       }
     }
   },
   data(){
     return {
-      datalist : { 
+      data : { 
         ware : {
           newWareName: "", 
-          newWareDescription : "", 
           newWarePrice : "", 
           storageEnabled : false, 
           newStorageAmount : "", 
         },
         wareList : [],
-        soldList : []
+        cart : [],
       },
     };
   },
@@ -39,41 +37,44 @@ const manager = {
     this.load();
   }
 }
-const cashier = {
-  template: '<cashier v-bind:cashierdata="datalist"></cashier>',
-  prop : ["data"],
+const cashier = { 
+  template: '<cashier v-bind:data="data"></cashier>', 
+  prop: ["data"],
   methods: {
-    save : function()
+    save : function(cart)
     {
-      localStorage.items = JSON.stringify(this.datalist);
     },
     load : function()
     {
-      var json_string = localStorage["items"];
+      var json_string = localStorage.items;
       if(json_string == undefined)
       {
-        this.datalist = [];
+        this.data.products = [];
       }
       else
       {
-        this.datalist = JSON.parse(json_string);
+        this.data.products = JSON.parse(json_string);
       }
-    }
+    },
+  
   },
   data(){
     return {
-      datalist : { 
-        wareList : [],
-        cart : []
+      data: {
+      cart : [],
+      products : [],
+      sold : []
       }
     };
   },
   mounted(){
     this.load();
-  }
+    }
 }
+
 const routes = {
 
+  '' : manager ,
   '#/' : manager ,
   '#/cashier': cashier 
 }
@@ -83,10 +84,10 @@ var wares = new Vue({
   data: {
   currentRoute : window.location.hash
 },
-  render(h) { console.log(this.currentRoute); return h(this.ViewComponent) },
+  render(h) { return h(this.ViewComponent) },
   computed : {
     ViewComponent() {
-      return routes[this.currentRoute] || manager;
+      return routes[this.currentRoute] || cashier;
     }
   }
 });
@@ -94,5 +95,4 @@ var wares = new Vue({
 
 window.onhashchange = function(){
   wares.currentRoute = window.location.hash;
-  console.log(window.location.hash)
 }

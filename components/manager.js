@@ -3,16 +3,10 @@ Vue.component("manager", {
     template: document.getElementById("titleTemplate"),
     methods: {
         saveWare: function () {
-            var length = this.data.wareList.length;
-            if(this.data.ware.newWareName != "" && this.data.ware.newWarePrice != ""){
-                this.data.wareList.push({
-                id : length, 
-                name : this.data.ware.newWareName,
-                description : this.data.ware.newWareDescription,
-                price : this.data.ware.newWarePrice,
-                amount: this.data.ware.newStorageAmount,
-                storageEnabled : this.data.ware.storageEnabled})
-                
+            
+            if(this.data.newWareName != "" && this.data.newWarePrice != ""){
+                this.data.wareList.push({id : this.data.wareList.length, name : this.data.ware.newWareName, description : this.data.ware.newWareDescription, price : this.data.ware.newWarePrice, storageEnabled : this.data.ware.storageEnabled, storageAmount : this.data.ware.newStorageAmount})
+                this.$emit("saveware",this.data.wareList)
                 this.data.ware.newWareName = ""
                 this.data.ware.newWareDescription = ""
                 this.data.ware.newWarePrice = ""
@@ -22,6 +16,9 @@ Vue.component("manager", {
             else{
                 alert("Must have a name and a price");
             }
+        },
+        save : function(){
+            this.$emit("saveware",this.data.wareList)
         }
     }
   });
